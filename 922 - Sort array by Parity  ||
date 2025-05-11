@@ -1,0 +1,33 @@
+what pb ask? -> given array which  containing both even and odd numbers. rearrange it so that numbers at even indices are even and numbers at odd indices are odd.
+logic-> this pb can be solve by two pointer  approach ->
+what two  pointer ->
+                 >> one pointer(even) starting index at 0, responsible for handling even indices.
+                 >> one pointer(odd)starting index at 1, responsible for handling odd indices.
+Traverse the whole array where every variable remain within array bounds.
+case 1-> 
+       if  value at even indices is already even,increment even by 2.
+       else value at  odd indices is already odd,increment odd by 2.
+case 2 -> if neither condition is satisfied,swap the value at even and odd indices,increment both pointer by 2. 
+
+
+otherwise  you can refer my code
+class Solution {
+public:
+    vector<int> sortArrayByParityII(vector<int>& nums) {
+
+        int n = nums.size();
+        int even = 0,odd=1;
+        while(even<n && odd<n){
+            if(nums[even]%2==0){
+                even += 2;
+            }else if(nums[odd]%2==1){
+                odd += 2;
+            }else{
+                swap(nums[even],nums[odd]);
+                even += 2;
+                odd += 2;
+            }
+        }
+        return nums;
+    }
+};
