@@ -1,0 +1,25 @@
+what pb -> given an array of random numbers containing both and even numbers.
+Requirement -> return array where all even number appear first, followed by all odd numbers.
+what logic-> initialise three pointer in which one is
+           i=0(handling all traversal of the array)
+           ev =0 handling all evn number comes first in array
+           od = n-1 handling all odd number comes after all even or we can say start filling odd number in output array from last,and decrement of iterator by one .
+
+vector<int> sortArrayByParity(vector<int>& nums) {
+       int n = nums.size();
+       // partition(nums.begin(),nums.end(),[](int n){return n%2==0;});
+        vector<int> ans(n);
+        int ev=0,od = nums.size()-1;
+        int i=0;
+        while(ev<=od){
+            if(nums[i]%2==0){
+                ans[ev] = nums[i++];
+                ev++;
+            }else{
+                 ans[od] = nums[i++];
+                 od--;
+            }
+        }
+        return ans;
+    }
+             
