@@ -1,0 +1,32 @@
+what pb -> you have an array whose contains some number, you should return an array, where product of all nums of array should be on ith position except self.
+what logic ->   you first think about prefix and suffix , doing operation at the place, no need of calculate prefix and suffix in extra space.
+                we have to traverse array from left to right first at ith place store prefix,then multiply of nums[i] and prefix store in prefix var,apply same process reached to till n
+                again initialise suffix = 1,and now traverse array from right to left ,first at ith place store suffix , then multiply of nums[i] with suffix and store in its suffix,and so on.
+
+
+              for more information refers c++ code ->
+Time complexity  =-> o(n)
+Space complexity = o(n)
+
+
+            
+  class Solution {
+public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> ans(n,1);
+
+        int prefix = 1;
+        for(int i=0;i<n;i++){
+            ans[i] = prefix;
+            prefix *= nums[i];
+        }
+        int suffix = 1;
+        for(int i=n-1;i>=0;i--){
+            ans[i] *= suffix;
+            suffix *= nums[i];
+        }
+        return ans;
+    }
+};
+  
