@@ -1,0 +1,37 @@
+
+**Logic:**
+- **Method 1 (M1)**:
+  - First, we create an `ans` vector and a `deque`.
+  - We iterate through the `nums` array:
+    - If a number is smaller than the pivot, we store it in the `ans` vector.
+    - If a number is equal to the pivot, we store it in the `deque` using `push_front()`.
+    - If a number is greater than the pivot, we store it in the `deque` using `push_back()`.
+  - After traversing the array, we copy all numbers from the `deque` into the `ans` vector.
+
+  **Time Complexity:** O(n) (since it requires multiple operations due to the use of a deque)  
+  **Space Complexity:** O(n)
+
+- **Method 2 (M2)**:
+  - We create three vectors: `less`, `equal`, and `greater`.
+  - As we iterate through `nums`:
+    - If a number is smaller than the pivot, we store it in the `less` vector.
+    - If a number is equal to the pivot, we store it in the `equal` vector.
+    - If a number is greater than the pivot, we store it in the `greater` vector.
+  - After the iteration, we insert the elements from the `equal` and `greater` vectors into the `less` vector
+
+
+   class Solution {
+public:
+    vector<int> pivotArray(vector<int>& nums, int pivot) {
+        
+        vector<int> ans,equal,greater;
+        for(int &x : nums){
+            if(x<pivot){ans.push_back(x);}
+            else if(x==pivot){equal.push_back(x);}
+            else greater.push_back(x);
+        }
+        ans.insert(ans.end(),equal.begin(),equal.end());
+        ans.insert(ans.end(),greater.begin(),greater.end());
+        return ans;
+    }
+};
