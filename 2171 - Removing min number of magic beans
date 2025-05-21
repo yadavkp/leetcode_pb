@@ -2,6 +2,12 @@ what logic  -> this qn is entirely based on the prefix sum ,we need to min beans
              each and every iteration we check subtaction of particular index beans to nth beans and tot_beans : and store in minremoval beans ;
              finally return min removal
 
+       steps -> first sort the beans in ascending order
+                accumulate all beans in tot_beans variable
+                iterate over the beans  and calculating optimal removal
+                finding minmal target by comparing minremoval
+
+
 
 for more information follow logic -> 
 
