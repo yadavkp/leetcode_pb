@@ -1,0 +1,25 @@
+what logic  -> this qn is entirely based on the prefix sum ,we need to min beans be  remove so that beans containing all equal numbers or possibly zero.
+             each and every iteration we check subtaction of particular index beans to nth beans and tot_beans : and store in minremoval beans ;
+             finally return min removal
+
+
+for more information follow logic -> 
+
+class Solution {
+public:
+    long long minimumRemoval(vector<int>& beans) {
+        sort(beans.begin(),beans.end());
+        long long tot_beans=0;
+        int n = beans.size();
+        for(int i=0;i<n;i++){
+             tot_beans += beans[i];
+        }
+        long long min_rem = LLONG_MAX;
+        for(long long i=0;i<n;i++){
+             long long curr_beans = tot_beans - (beans[i]*(n-i));
+             min_rem  = min(curr_beans,min_rem);
+        }
+        return min_rem;
+
+    }
+};
