@@ -1,0 +1,57 @@
+this concept you use when given some queries and perform ops in the matrix
+
+what logic -> this pb is entirly based on 2d difference array? -> 2d difference array means - > given some queries and perform all queries on mat (which it also include concept 
+            row wise prefix_sum and col_wise prefix sum)
+
+  when perform queries on mat remember some formulas -: 
+                                                         ans[r1][c1]++;
+                                                          if(c2+1 < n)ans[r1][c2+1]--;
+                                                          if(r2+1 < n)ans[r2+1][c1]--;
+                                                          if(r2 +1 < n && c2+1 < n)ans[r2+1][c2+1]++;
+//after that calculate row wise prefix sum->
+
+                                                          for(int i=0;i<n;i++){
+                                                              for(int j=1;j<n;j++){     //except first num[0][0] unchanged.
+                                                                      ans[i][j] += ans[i][j-1];
+                                                                  }
+                                                          }
+
+//then calculate column wise prefix sum-> 
+
+                                                           for(int j=0;j<n;j++){
+                                                                for(int i=1;i<n;i++){
+                                                                    ans[i][j] += ans[i-1][j];
+                                                                }
+                                                            }
+then finally return the ans matrix ->
+
+refers complete code ->
+                           class Solution {
+public:
+    vector<vector<int>> rangeAddQueries(int n, vector<vector<int>>& queries) {
+   vector<vector<int>> ans(n,vector<int>(n,0));
+   
+    for( auto &q : queries){
+       int r1 = q[0];
+       int c1 = q[1];
+       int r2 = q[2];
+       int c2 = q[3];
+
+        ans[r1][c1]++;
+        if(c2+1 < n)ans[r1][c2+1]--;
+        if(r2+1 < n)ans[r2+1][c1]--;
+        if(r2 +1 < n && c2+1 < n)ans[r2+1][c2+1]++;
+    }
+    for(int i=0;i<n;i++){
+        for(int j=1;j<n;j++){
+                ans[i][j] += ans[i][j-1];
+            }
+        }
+        for(int j=0;j<n;j++){
+            for(int i=1;i<n;i++){
+                ans[i][j] += ans[i-1][j];
+            }
+        }
+    return ans;  
+    }
+};
