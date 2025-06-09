@@ -1,0 +1,32 @@
+what logic -> 
+           some steps should follow for handling cases of next_Permutation->
+           c->1 find first decreasing element from right to left(call as Pivot)
+           c->2 find first smallest largest element from right to left if it is greater than pivot
+           c->3 swap pivot and that number
+           c->4 reverse string after pivot 
+           c->5 finally for overflow so check result num is greater than INT_MAX then ans will -1 other ans will that num
+
+for more detail refers the code
+
+
+class Solution {
+public:
+    int nextGreaterElement(int n) {
+
+        string st = to_string(n);
+        int i = st.size()-2;
+        while(i>=0 && st[i] >= st[i+1]){
+            i--;
+        }
+        if(i <0 ) return -1;
+        int j = st.size()-1;
+        while(st[j] <= st[i]){
+            j--;
+        }
+        swap(st[i],st[j]);
+        reverse(st.begin()+i+1,st.end());
+        long long ans = stoll(st);
+        
+        return (ans > INT_MAX) ? -1 : ans;
+    }
+};
