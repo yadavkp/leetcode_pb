@@ -1,0 +1,13 @@
+
+what pb-> it simply a given string containing word with two or more space 
+solution -> you need to print the string in reverse order with only space between the word
+what logic ->  first we concatenated string in stringstream (which is used for extracted word one by one from stringstream append to the resulting string  )
+
+detailed code
+               stringstream ss(s1);
+               string result = "";
+             while(ss >> curr){
+                       if(!result.empty()){
+                               result = curr + " " + result; 
+                       else{
+                                 result = curr;
