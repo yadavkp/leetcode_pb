@@ -1,0 +1,49 @@
+what pb -> its need is print the lexicographically greater string based on given the two word string.
+what logic -> it is a two pointer approach which is implemented on a string->
+             //it has two method one method based on (substr(i)-> it give whole string from i to till end)
+
+            M->1 initilaise a two pointer i,j with 0; and compare each substr from word1 to word which is greater concatenate in result string then increase the pointer
+                  it work till one of the string become empty,.
+                 after that if any remaining string not empty then completed remaining stirng append to result;
+
+
+       very simple code ->
+
+class Solution {
+public:
+    string largestMerge(string word1, string word2) {
+        int i=0,j=0;
+        string merge = "";
+        int n1 = word1.size();
+        int n2 = word2.size();
+        
+          while(i < n1 && j < n2){
+  
+              if(word1.substr(i) > word2.substr(j)){
+                  merge += word1[i++];
+              }else{
+                  merge += word2[j++];
+              }
+          }
+            while(i<n1){
+                merge += word1[i++];
+               
+            }
+            while(j < n2){
+                merge += word2[j++];
+                
+            }
+         return merge;
+      }
+
+method 2-> 
+      using compare method which is very fast compare to repeatedly use of use of substr
+       it simply check it if(word1.compare(i,word1.size()-1,word2, j word2.size()-1)>0
+                             merge += word1[i++]
+                          else{
+                              merge += word2[j++];
+
+           after that use 
+                          return merge + word1.substr(i) + word2.substr(j);
+
+    
