@@ -1,0 +1,29 @@
+goal-> find the smallest length of string after removal of matching character from both end.
+
+Key Concept -> if s[left] == s[right] , we keep removeing all character from both ends as long as they match and are the same letter. 
+               . this is repeated till s[left]!=s[right]
+               . after that return finally length of remaining string
+
+Algorithm Steps ->
+               initialise two pointer left =0, and right = s.size()-1;
+               while(left < right and s[left]==s[right])
+                     store left char  char ch = s[left]
+                     move forward till left<=right and s[left] == ch   , increment left
+                     move backword till left <= right and s[left] ==ch , decrement right--
+
+                     return right-left+1;
+
+for more detail refers the solution-> 
+class Solution {
+public:
+    int minimumLength(string s) {
+
+      int left=0,right=s.size()-1;
+      while(left< right && s[left]==s[right]){
+        char ch = s[left];
+          while(left <= right && s[left]==ch)left++;
+          while(left <= right && s[right]==ch)right--;
+      }
+      return right-left+1;
+    }
+};
