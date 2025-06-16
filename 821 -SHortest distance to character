@@ -1,0 +1,32 @@
+
+what pb -> we need to find shortest distance of each charactr to by a one given character ->
+ what logic ->  one mehtod is based on bruteforce -> using two for loop you can find the min dist of curr character by a given charater-
+
+2nd Method -> first declare a array has length n , and its at every place value will be n.
+           -> initialise the prev which is value -n(it means max distance of character to given characer)
+            iterate string from left to right if char is matched then update prev, and set vector ith position by i-prev;
+
+            again declare prev = 2*n;
+            iterate from right to left , if the curr char is matched with the given character - then update prev,and set vector ith position by a ans[i] = min(ans[i],prev - j)
+
+  for more detail refers the code solution ->
+   class Solution {
+public:
+    vector<int> shortestToChar(string s, char c) {
+        int n = s.size();
+        vector<int> ans(n,n);
+
+        int prev = -n;
+        for(int i=0;i<n;i++){
+            if(s[i] == c) prev = i;;
+            ans[i] = i - prev;
+        }
+         prev = 2*n;
+        for(int j = n-1;j >= 0 ;j--){
+            if(s[j] == c) prev = j;
+            ans[j] = min(ans[j],prev - j);
+        }
+        
+        return ans;
+    }
+};
