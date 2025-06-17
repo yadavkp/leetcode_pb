@@ -1,0 +1,27 @@
+
+what pb ->  given a string which contaions then only binary values,0,1 , let's call it 1 is black and 0 is white, you need to group these number so that 
+          all white go to the left side and all white go to the right side ,after perfroming any operation (condition is you should choose always two adjacent num)
+
+what logic ->  intialise two pointer one is left=0,right =0;
+             1 > first we need to find where "0" string contain , if find 0, then count step by diff of abs(right - left),and then increment left pointer by 1, this operaioin you
+               can you till you reached n.
+
+               so final ans will be total steps->
+
+    for more details understanding refers my code->
+
+    class Solution {
+public:
+    long long minimumSteps(string s) {
+        int n = s.size();
+        long long l=0,r=0,res = 0;
+        for(r = 0;r<n;r++){
+            if(s[r] == '0'){
+                res += (r - l);
+                l++;
+            }
+        }
+        return res; 
+
+    }
+};
