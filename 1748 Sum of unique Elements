@@ -1,0 +1,26 @@
+what problem -> find the sum of unique elements in arrays. like given array-> 1 2 2  5 6 here the sum of unique num will be the 12
+
+what logic -> we made a frquncy array and  increment the frquency of that number. after that we checking if any number has frquency 1 that we add in sum other leave it.
+                after that we return sum.
+
+for more details solution refers code->-
+ class Solution {
+public:
+    int sumOfUnique(vector<int>& nums) {
+        
+        vector<int> frq(101,0);
+        int n = nums.size();
+        for(int i=0;i<n;i++){
+            frq[nums[i]]++;
+        }
+        int ans = 0;
+         for(int i=0;i<=100;i++){
+             if(frq[i]==1){
+                ans += i;
+             }
+        }
+        return ans;
+
+    }
+};
+
