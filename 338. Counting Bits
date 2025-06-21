@@ -1,0 +1,23 @@
+what is the pb-> given an integer, iterate from 0 to n. for each i count how many set bit are there in binary representation, and store in the vector, then return vector.
+
+what logic-> init a vector  and iterate each i from 0 to n. for each i, i will count how many set bits are there by the help of loop or inbuile function(__builtin_popcount)
+                       after that push_back them in the vector.
+
+class Solution {
+public:
+    vector<int> countBits(int n) {
+        
+        vector<int> bit;
+        for(int i=0;i<=n;i++){
+            int cnt=0;
+            int p = i;
+            while(p>0){
+                if(p&1)cnt++;
+                p >>= 1;
+            }
+            //bit.push_back(__builtin_popcount(i));
+            bit.push_back(cnt);
+        }
+        return bit;
+    }
+};
