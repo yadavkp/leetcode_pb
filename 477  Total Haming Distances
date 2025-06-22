@@ -1,0 +1,28 @@
+what pb ->  we count how many pos are different of bits of each pair corresponding to each other. and then return that count.
+what logic -> first we should shift each number of nums array to the right and then count how many set bits , and unset bits(unset bit = n-setbit) and then update sum
+                 by (multiply of setbit and unset bit).and then return sum.
+
+for detail refers code->
+
+
+class Solution {
+public:
+    int totalHammingDistance(vector<int>& nums) {
+        int tot_dist = 0;
+        int n = nums.size();
+        for(int bit=0 ; bit<32 ; bit++){
+             int cnt_1 = 0;
+
+            for(int i=0;i<n;i++){
+                if((nums[i] >> bit)&1){
+                    cnt_1++;
+                }
+            }
+            int zero_cnt = n - cnt_1;
+            tot_dist += (zero_cnt * cnt_1);
+
+        }
+        return tot_dist;
+    }
+};
+            
