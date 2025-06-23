@@ -1,0 +1,38 @@
+
+### 🔍 **Problem Goal**
+Given an array where every element appears **three times** except one which appears **once**, find that unique element in **O(n) time** and **O(1) space**
+
+### 💡 **Core Concept**
+We use **bitwise manipulation** to track the count of each bit mod 3.
+- `ones` – stores bits that have appeared once so far.
+- `twos` – stores bits that have appeared twice so far.
+- When a bit has appeared three times, it gets cleared from both.
+
+### 🔁 **How It Works**
+On each iteration:
+```cpp
+ones = (ones ^ num) & ~twos;
+twos = (twos ^ num) & ~ones;
+```
+- `^` flips the bits to include the current `num`.
+- `& ~twos` ensures that if a bit is already in `twos`, it's not counted again in `ones`.
+- Same logic in reverse for `two
+
+### ✅ **Final Output**
+After looping through the array:
+- `ones` holds the result — the number that appeared only once.
+
+
+//////////////////////////////
+for more detail refers my code ->
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        int ones=0,twos=0;
+        for(int num : nums){
+            ones = (ones ^ num) &~twos;
+            twos = (twos ^ num) &~ones;
+        }
+        return ones;
+    }
+};
