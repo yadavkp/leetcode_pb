@@ -1,0 +1,45 @@
+
+### 🧱 **Key Concepts**
+- Use **bit manipulation (left shift)** to speed up subtraction.
+- Convert inputs to **long long** and use `abs()` to avoid overflow.
+- Track the **sign** separately, return result accordingly.
+### ⚠️ **Edge Case**
+If `dividend == INT_MIN` and `divisor == -1`, return `INT_MAX` (to avoid overflow).
+
+### 🧠 **Steps**
+1. **Handle overflow case** (`INT_MIN / -1`).
+2. Determine **sign** of result.
+3. Take **absolute values** of dividend and divisor.
+4. **Repeat**:
+   - Left shift divisor until it’s just ≤ dividend.
+   - Subtract and accumulate result with shifted multiple.
+5. Apply **sign** to result and return.
+
+for more detail refer's my code->
+class Solution {
+public:
+    int divide(int dividend, int divisor) {
+     
+        if (dividend == INT_MIN && divisor == -1)
+            return INT_MAX;
+
+       
+        bool negative = (dividend < 0) ^ (divisor < 0);
+
+        long long dvd = abs((long long)dividend);
+        long long dvs = abs((long long)divisor);
+        long long result = 0;
+
+        while (dvd >= dvs) {
+            long long temp = dvs, multiple = 1;
+            while (dvd >= (temp << 1)) {
+                temp <<= 1;
+                multiple <<= 1;
+            }
+            dvd -= temp;
+            result += multiple;
+        }
+
+        return negative ? -result : result;
+    }
+};
