@@ -1,0 +1,35 @@
+what pb-> given an array in which elements appear twice except two elements that appears exactly once. so we need to find those element that is appear exactly once.
+
+what logic->
+- Compute XOR of all elements
+- Let this result be xorResult = a ^ b
+- Since a ≠ b, at least one bit in xorResult is set (i.e., 1)
+- Find a distinguishing bit
+- Extract the rightmost set bit from xorResult using:
+
+for more detail's info refers the code->
+
+class Solution {
+public:
+    vector<int> singleNumber(vector<int>& nums) {
+        
+        int xor_all = 0;
+        for(int num :  nums){
+            xor_all ^= num;
+        }
+       unsigned int ux = static_cast<unsigned int>(xor_all); //That line converts the signed integer xor_all into an unsigned integer called ux.
+
+       int diff_bit = ux & -ux;
+        int a=0,b=0;
+        for(int num : nums){
+            
+            if(num & diff_bit){
+                a ^= num;
+            }else{
+                b ^= num;
+            }
+        }
+        return {a,b};
+
+    }
+};
