@@ -1,0 +1,52 @@
+what pb -> you can maximise product of a and b by changing at most n bit 
+        
+       max prodcut of two number occur when two number very close to each other (5 * 5 = 25 ,(if two num have sum 10 , no any factor occur have product grater than 25 ))
+logic-> so first we create mask to each i till n-1
+           and that mask , now we check at ith position a and b has set bit or unset bit.
+           c-1 when a and b both has ith bit set we ignore( that already has max product no need to change's the bit)
+           c-2 when a has set bit (and b has 0 on the ith bit ) now check if a > b
+                                                                then reduce a by xor by mask 
+                                                                 and increase b by or(operator) by mask    (  aisa krne se both a and b reached to very close)
+
+
+            c-3 if b has a set bit on ith posn  and a has 0 on ith posn   -> if(b > a) 
+                                                                           then reduce b by xor with mask
+                                                                              increased a by or opn with mask
+           c-4 if a and b has both 0 bit on ith posn 
+                      then maximise both a and b by performing or operation
+
+
+
+  for more detail refer's my code->
+  class Solution {
+public:
+    int maximumXorProduct(long long a, long long b, int n) {
+        int mod = 1e9 + 7;
+        for(int i = n-1;i >= 0; i--){
+            long long mask = (long long)1 << i;
+            if((a & mask) && (b & mask)){
+                continue;
+            }else if(a & mask){
+                if(a > b){
+                    a ^= mask;
+                    b |= mask;
+                }
+            }else if(b & mask){
+                   if(a < b){
+                       a |= mask;
+                       b ^= mask;
+                   }
+            }else{
+                a |= mask;
+                b |= mask;
+            }
+        }
+        a = a%mod;
+        b = b%mod;
+
+        return (1LL * a * b) % mod;
+        
+    }
+};
+                              
+                                                                 
