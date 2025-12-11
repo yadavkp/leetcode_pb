@@ -59,11 +59,12 @@
 // };
 
 
+// tabulation code -> 
 class Solution {
 public:
     int minPathSum(vector<vector<int>>& grid) {
         int m = grid.size(), n = grid[0].size();
-        vector<vector<int>> dp(m, vector<int>(n, 0));
+        vector<vector<int>> dp(m, vector<int>(n));
         
         for(int r = 0;r < m;r++){
             for(int c = 0;c < n;c++){
