@@ -14,21 +14,26 @@ class Solution {
 
         return sum + min(left,right);
     }
+
 public:
 
     int minimumTotal(vector<vector<int>>& triangle) {
         
         int n = triangle.size();
-        //return solve(0,0,triangle);
-        // if(n < =1){
-        //     return 
-        // }
+
+        vector<vector<int>> dp(n,vector<int>(n,0));
+        for(int j = 0;j<n;j++){
+            dp[n-1][j] = triangle[n-1][j];
+        }
         for(int r = n-2;r >=0;r--){
-            int m = triangle[r].size();
+            int m = triangle[r].size(); // current column size 
             for(int c = 0;c < m;c++){
-                triangle[r][c] += min(triangle[r+1][c],triangle[r+1][c+1]);
+                int left = dp[r+1][c];
+                int right = dp[r+1][c+1];
+                dp[r][c] = triangle[r][c] +min(left,right);
             }
         }
-        return triangle[0][0];
+
+        return dp[0][0];
     }
 };
