@@ -1,30 +1,26 @@
-#include <bits/stdc++.h>
-using namespace std;
-
 class Solution {
+    const int mod = 1e9+7;
+    #define ll long long 
 public:
     int specialTriplets(vector<int>& nums) {
-        const int MOD = 1'000'000'007;
-        int max_val = *max_element(nums.begin(), nums.end()) * 2;
-
-        vector<long long> freqPrev(max_val + 1, 0);
-        vector<long long> freqNext(max_val + 1, 0);
-
-        // initialize freqNext with all counts
-        for (int x : nums) {
-            freqNext[x]++;
+        
+        unordered_map<ll,int> tot_frq;
+        unordered_map<ll,int> frq;
+        for(auto t : nums){
+            tot_frq[t]++;
         }
-
-        long long ans = 0;
-        for (int x : nums) {
-            freqNext[x]--;              // remove current from future
-            int t = x * 2;
-            if (t <= max_val) {
-                ans = (ans + freqPrev[t] * freqNext[t]) % MOD;
+        ll ans = 0;
+        for(auto curr : nums){
+            ll left = frq[2*curr];
+            ll right = tot_frq[2*curr] - left;
+            frq[curr]++;
+            // edge cases 
+            if(curr == 0){
+                right -= 1;
             }
-            freqPrev[x]++;              // add current to prefix
+            ans  =  (ans + left * 1LL* right )%mod;
         }
-
-        return (int)ans;
+        
+        return ans;
     }
 };
