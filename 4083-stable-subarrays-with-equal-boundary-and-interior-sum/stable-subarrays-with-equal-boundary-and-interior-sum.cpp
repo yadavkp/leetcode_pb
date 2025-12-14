@@ -13,11 +13,17 @@ public:
         }
 
         map<pair<ll,ll>,ll> mpp;
-        for(int i=0;i<n;i++){
+        // for(int i=0;i<n;i++){
+        //     if(i >= 2){
+        //         ans += mpp[{a[i],pfx[i]}];
+        //     }
+        //     if(i-1 >= 0)mpp[{a[i-1],pfx[i-1] + 2*a[i-1]}]++;
+        // }
+         for(int i=0;i<n;i++){
             if(i >= 2){
-                ans += mpp[{a[i],pfx[i]}];
+                ans += mpp[{a[i],pfx[i]-2*a[i]}];
             }
-            if(i-1 >= 0)mpp[{a[i-1],pfx[i-1] + 2*a[i-1]}]++;
+            if(i-1 >= 0)mpp[{a[i-1],pfx[i-1]}]++;
         }
         return ans;
         
