@@ -35,7 +35,7 @@ public:
         
         for(int i=1;i<n;i++){
             for(auto &val : left[i]){
-                int target = (tot_sum - 2*val)/2;
+                int target = (tot_sum - 2*val)/2;   // this thing i don't understand so far 
                 int right_idx = n - i;
                 auto &arr = right[right_idx];
                 auto lb = lower_bound(arr.begin(),arr.end(),target);
@@ -43,8 +43,6 @@ public:
                 if(lb != arr.end()){
                     mn_sum = min(mn_sum , abs(tot_sum - 2*(val + *lb)));
                 }
-               
-                
             }
         }
 
