@@ -22,29 +22,67 @@
 // };
 
 
-// memoisation
+// memoisation->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+// class Solution {
+//     int n;
+//     vector<vector<int>> dp;
+//     int solve(int i,int j,string &s){
+
+//         if(i > j)return 0;
+//         if(i == j)return dp[i][j] = 1;
+//         int match = 0,not_match = 0;
+//         if(dp[i][j] != -1)return dp[i][j];
+//         if(s[i] == s[j]){
+//             match  = dp[i][j] = 2 + solve(i+1,j-1,s);
+//         }else{
+//             not_match = dp[i][j] = max(solve(i,j-1,s),solve(i+1,j,s));
+//         }
+
+//         return  max(match,not_match);
+//     }
+// public:
+//     int longestPalindromeSubseq(string s) {
+//         n = s.size();
+//         dp.assign(n,vector<int>(n,-1));
+//         return solve(0,n-1,s);
+
+//     }
+// };
+
+
+
+
 class Solution {
     int n;
     vector<vector<int>> dp;
-    int solve(int i,int j,string &s){
-
-        if(i > j)return 0;
-        if(i == j)return dp[i][j] = 1;
-        int match = 0,not_match = 0;
-        if(dp[i][j] != -1)return dp[i][j];
-        if(s[i] == s[j]){
-            match  = dp[i][j] = 2 + solve(i+1,j-1,s);
-        }else{
-            not_match = dp[i][j] = max(solve(i,j-1,s),solve(i+1,j,s));
-        }
-
-        return  max(match,not_match);
-    }
+   
 public:
     int longestPalindromeSubseq(string s) {
         n = s.size();
-        dp.assign(n,vector<int>(n,-1));
-        return solve(0,n-1,s);
+        dp.assign(n,vector<int>(n,0));
+        
+        // handle base case;
+
+        for(int i = 0; i < n;i++){
+            dp[i][i] = 1;
+        }
+
+        for(int l = 2; l <= n;l++){
+            for(int i = 0; i + l-1 < n;i++){
+
+                int j = i + l-1;
+               // if(i > j) dp[i][j] = 0;
+               // if(i == j)dp[i][j] = 1;
+
+                if(s[i] == s[j]){
+                    dp[i][j] = 2 + (i + 1 <= j-1 ? dp[i+1][j-1] : 0); // ensure  i+1 <= j-1;
+                }else{
+                    dp[i][j] = max(dp[i][j-1],dp[i+1][j]);
+                }
+            }
+        }
+        return dp[0][n-1];
 
     }
 };
