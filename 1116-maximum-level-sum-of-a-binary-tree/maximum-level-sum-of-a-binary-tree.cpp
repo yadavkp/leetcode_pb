@@ -18,42 +18,30 @@ public:
         int mx = root->val;
         
         int level = 1,new_level = 1;;
-        while(true){
-            queue<TreeNode*> temp;
-            int curr = 0;
-            new_level++;
-            if(!q.empty()){
-                while(!q.empty()){
-                        TreeNode* node = q.front();
-                        q.pop();
-                        if(node->left != nullptr){
-                            temp.push(node->left);
-                            curr += node->left->val;
-                        }
-                        if(node->right != nullptr){
-                            temp.push(node->right);
-                            curr += node->right->val;
-                        }
+         while(!q.empty()){
 
-                }
-               
-                cout<<new_level<<"\n";
-                cout<<"mx "<<curr<<"\n";
-            }else{
-                break;
+            int sz = q.size();
+            int levelsum = 0;
+
+            for(int i=0;i<sz;i++){
+
+                TreeNode* node = q.front();
+                q.pop();
+
+                levelsum += node->val;
+
+                if(node->left != nullptr) q.push(node->left);
+                if(node->right != nullptr)q.push(node->right);
             }
 
-            if(mx < curr && !temp.empty()){
-                mx = curr;
+            if(levelsum > mx){
                 level = new_level;
+                mx = levelsum;
             }
-            q = temp;
-            
-        }
+            new_level++;
+
+         }
         return level;
-
-        
-
 
     }
 };
