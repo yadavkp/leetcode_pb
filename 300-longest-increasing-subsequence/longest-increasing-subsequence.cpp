@@ -34,6 +34,7 @@
 
 
 
+
 class Solution {
     vector<vector<int>> dp;
     int n;
@@ -46,7 +47,7 @@ public:
 
 
         for(int i = n-1;i>=1;i--){
-            for(int p_idx = 0;p_idx<n-1;p_idx++){
+            for(int p_idx = n-1;p_idx>=0;p_idx--){
                 int not_take = dp[i+1][p_idx];
                 int take = 0;
                 if(nums[i] > nums[p_idx]){
