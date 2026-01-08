@@ -45,9 +45,8 @@ public:
         n = nums.size();
         dp.assign(n+1,vector<int>(n,0));
 
-
         for(int i = n-1;i>=1;i--){
-            for(int p_idx = n-1;p_idx>=0;p_idx--){
+            for(int p_idx = n-2;p_idx>=0;p_idx--){
                 int not_take = dp[i+1][p_idx];
                 int take = 0;
                 if(nums[i] > nums[p_idx]){
@@ -61,3 +60,33 @@ public:
         return dp[1][0];
     }
 };
+
+
+
+/// sovle by the binary search
+
+// class Solution {
+//     vector<vector<int>> dp;
+//     int n;
+
+//     bool 
+
+// public:
+//     int lengthOfLIS(vector<int>& nums) {
+
+//         n = num.size();
+//         int l = 1,h = n-1;
+//         int ans = 1;
+//         while(l <= h){
+//             int mid = l + (h - l)/2;
+
+//             if(valid(a,mid)){
+//                 ans = max(ans,mid);
+//                 l = mid+1;
+//             }else{
+//                 h = mid-1;
+//             }
+//         }
+//         return ans;
+//     }
+// };
