@@ -88,7 +88,7 @@ public:
 
 
          for(int i=n-1;i>=0;i--){
-            for(int prev = n-2;prev >= -1;prev--){
+            for(int prev = n-1;prev >= -1;prev--){
 
                 int not_take = dp[i+1][prev+1]; // prev +! , handle -ve idx to +1
 
