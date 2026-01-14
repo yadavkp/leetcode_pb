@@ -34,17 +34,6 @@
             
 //         }
         
-//         // for(int i = 0;i<4;i++){
-//         //     int n_r = r + dx[i];
-//         //     int n_c = c + dy[i];
-
-//         //     if(mat[n_r][n_c] > mat[r][c]){
-//         //         cnt += 1 + solve(n_r,n_c,prev,mat);
-//         //     }
-//         //     cout<<cnt<<"\n";
-//         // }
-        
-//         //cout<<cnt<<"\n";
 //         cnt = max({up,left,right,down});
 //         return dp[r][c] =  cnt;
 
@@ -117,3 +106,46 @@ public:
          
     }
 };
+
+
+
+
+// class Solution {
+
+//     int dx[4] = {0,0,-1,1};
+//     int dy[4] = {-1,1,0,0};
+//     int n,m;
+
+//      vector<vector<int>> dp;
+
+// public:
+//     int longestIncreasingPath(vector<vector<int>>& mat) {
+        
+//         int ans = 0;
+//         n = mat.size(),m = mat[0].size();
+//         dp.assign(n+1,vector<int>(m+1,0));
+
+//         int mx = 0;
+//         for(int i=n-1;i>=0;i--){
+//             for(int j = m-1;j>=0;j--){
+           
+//               // ans = max(ans,solve(i,j,mat));
+//                //
+//                int ans = 0;
+//                for(int k = 0;k<4;k++){
+
+//                     int n_r = i + dx[k];
+//                     int n_c = j + dy[k];
+
+//                     if(n_r >= 0 && n_r < n && n_c >=0 && n_c < m && mat[n_r][n_c] > mat[i][j]){
+//                         ans = max(ans,1 + dp[n_r][n_c]);
+//                     }
+//                }
+//                dp[i][j] = max(ans,dp[i][j]);
+//                mx = max(mx,dp[i][j]);
+//             }
+//         }
+
+//         return mx+ 1;
+//     }
+// };
