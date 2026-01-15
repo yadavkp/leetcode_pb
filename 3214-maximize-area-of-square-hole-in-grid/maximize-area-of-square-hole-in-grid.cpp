@@ -28,7 +28,7 @@ public:
         
              }
 
-        int side = min(mx_hz_cons , mx_vt_cons) + 1;
+        int side = min(mx_hz_cons , mx_vt_cons) + 1; // why +1 if delete 1 bars create space 2
 
 
 
