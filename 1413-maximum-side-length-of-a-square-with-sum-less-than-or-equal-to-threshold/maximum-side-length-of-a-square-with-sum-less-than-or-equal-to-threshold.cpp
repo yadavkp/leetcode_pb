@@ -1,17 +1,5 @@
 class Solution {
     #define ll long long 
-    // int sum(int i,int n,int j,int m , vector<vector<int>>&mat){
-
-    //     int tot = 0;
-    //     for(int r = i;r<=n;r++){
-    //         for(int c = j;c<=m;c++){
-    //             tot += mat[r][c];
-    //         }
-    //     }
-
-    //     return tot;
-    // }
-
 public:
     int maxSideLength(vector<vector<int>>& mat, int frq) {
         
@@ -35,9 +23,8 @@ public:
        
         
             for(int i=1;i<=n;i++){
-                //if(i + k > min(n,m))break;
                 for(int j = 1; j<= m; j++){
-                  for(int k = 0;k < min(n,m);k++){
+                    for(int k = 0;k < min(n,m);k++){
 
                         if(i + k <= n && j + k <= m){
                             int r2 = i + k,c2 = j +k,r1 = i,c1 = j;
@@ -47,11 +34,8 @@ public:
                                 ans = max(ans,k+1);
                             }
                         }
-                  }
-
-            }
-        
-                  
+                    }
+                }    
             }     
        
 
