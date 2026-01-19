@@ -11,11 +11,8 @@ public:
         for(int i=0;i<n;i++){
             for(int j = 0; j< m; j++){
                 int r = i+1,c = j+1;
-                pfx[r][c] += (ll)mat[i][j];
-                int left = pfx[r][c-1];
-                int down = pfx[r-1][c];
-                int sub = pfx[r-1][c-1];
-                pfx[r][c] += left + down - sub; 
+                pfx[r][c] += (ll)mat[i][j] + pfx[r][c-1]+pfx[r-1][c]-pfx[r-1][c-1];
+               
             }
         }
         
