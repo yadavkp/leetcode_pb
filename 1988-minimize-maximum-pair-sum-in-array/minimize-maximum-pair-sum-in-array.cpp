@@ -3,10 +3,9 @@ public:
     int minPairSum(vector<int>& nums) {
         sort(nums.begin(),nums.end());
         
-        int n = nums.size(),mx = 0, i=0,j = n-1;
-        while(i < j){
-            mx = max(mx,nums[i] + nums[j]);
-            i++,j--;
+        int n = nums.size(),mx = 0;
+        for(int i=0;i< n >> 1;i++){
+            mx = max(mx,nums[n-i-1] + nums[i]);
         }
 
         return mx;
