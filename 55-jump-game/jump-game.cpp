@@ -3,18 +3,13 @@ public:
     bool canJump(vector<int>& nums) {
 
         int n = nums.size();
-        vector<bool> arr(n,false);
-        arr[0] = true;
-
-        for(int i=0;i<n-1;i++){
-           if(arr[i]==true){
-                for(int j = i;j <= i + nums[i] && j < n;j++){
-                    arr[j] = true;
-                }
-           } 
+        int mx = 0;
+        for(int i=0;i<n;i++){
+          if(i > mx)return false;
+           mx = max(mx, i + nums[i]);
         }
 
         
-        return (arr[n-1] == true);
+        return true;
     }
 };
