@@ -40,6 +40,8 @@ public:
         int level = 0;
         while (!q.empty()) {
             int sz = q.size();
+           
+
             while (sz--) {
                 auto [r, c] = q.front(); q.pop();
 
@@ -55,7 +57,7 @@ public:
                     }
                 }
             }
-            level++;
+             level++;
         }
         return level;
     }
