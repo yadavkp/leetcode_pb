@@ -10,8 +10,6 @@ public:
             int u = times[i][0],v = times[i][1],w = times[i][2];
             u--,v--;
             adj[u].push_back({w,v});
-
-            cout<<u<<" "<<v<<" "<<w<<"\n";
             
         }
 
@@ -39,7 +37,7 @@ public:
                 
                 pq.emplace(dist[v], v);
 
-                cout<<"v -> "<<v<<" wight "<< dist[u] + w <<" \n";
+               
             }
         }
     }
