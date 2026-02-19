@@ -43,9 +43,11 @@
 
 
 class Solution {
+
     int dx[4] = {0,0,-1,1};
     int dy[4] = {-1,1,0,0};
     int n,m;
+
 #define vvi vector<vector<int>> 
     
 bool dfs(int r,int c,int tar, vvi&vis,vvi&grid){
@@ -88,7 +90,7 @@ public:
             int mid = l + (h - l) /2 ;
             vector<vector<int>> vis(n,vector<int>(m,0));
             if(dfs(0,0,mid,vis,grid)){
-                //ans = min(ans,mid);
+                
                 ans = mid;
                 h  = mid -1;
             }else{
