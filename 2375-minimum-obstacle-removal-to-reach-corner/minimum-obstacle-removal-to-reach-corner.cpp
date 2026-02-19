@@ -40,7 +40,7 @@ public:
             }
         }
 
-        return 0;
+        return m + n-1;
 
     }
 };
