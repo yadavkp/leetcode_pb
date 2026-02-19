@@ -1,3 +1,10 @@
+// it has threee method -> 
+/*
+here i solved only the two method , 1 ->  is dikshtra 
+                                    2 - > binarysearch 
+*/
+
+
 class Solution {
     int dx[4] = {0,0,-1,1};
     int dy[4] = {-1,1,0,0};
