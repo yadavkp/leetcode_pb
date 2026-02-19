@@ -88,7 +88,8 @@ public:
             int mid = l + (h - l) /2 ;
             vector<vector<int>> vis(n,vector<int>(m,0));
             if(dfs(0,0,mid,vis,grid)){
-                ans = min(ans,mid);
+                //ans = min(ans,mid);
+                ans = mid;
                 h  = mid -1;
             }else{
                l = mid + 1;
