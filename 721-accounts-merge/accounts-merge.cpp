@@ -4,15 +4,16 @@ class Solution {
 
 
     int findpar(int nod,vi&par){
+
         if(par[nod] == nod)return nod;
 
         return par[nod] = findpar(par[nod],par);
     }
 
-    void unite (int u,int v, vi&par,vi&size){
+    void union_y_size(int u,int v, vi&par,vi&size){
+
         int pu = findpar(u,par);
         int pv = findpar(v,par);
-
 
         if(pu == pv) return;
 
@@ -23,6 +24,7 @@ class Solution {
             par[pv] = pu;
             size[pu]+=size[pv];
         }
+
     }
 
 public:
@@ -36,11 +38,12 @@ public:
         unordered_map<string,int> em_idx;
 
         for(int i=0;i<n;i++){
+
             for(int j = 1;j<accounts[i].size();j++){
                 string email = accounts[i][j];
 
                 if(em_idx.count(email)){
-                    unite(i,em_idx[email],par,size);
+                    union_y_size(i,em_idx[email],par,size);
                 }else{
                     em_idx[email] = i;
                 }
@@ -61,7 +64,10 @@ public:
 
             vector<string> row;
             row.pb(accounts[idx][0]);//
-            row.insert(row.end(),email.begin(),email.end());
+            // row.insert(row.end(),email.begin(),email.end());
+            for(auto em : email){
+                row.pb(em);
+            }
 
             res.pb(row);
         }
