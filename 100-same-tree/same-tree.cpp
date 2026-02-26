@@ -22,6 +22,7 @@ bool dfs(TreeNode* r1, TreeNode* r2){
     if(dfs(r1->left,r2->left) == false) return false;
 
     if(dfs(r1->right,r2->right) == false) return false;
+    
 
     return true;
 }
