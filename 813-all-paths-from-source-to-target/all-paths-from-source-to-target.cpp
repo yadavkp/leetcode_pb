@@ -4,8 +4,8 @@ class Solution {
     int n;
     void dfs(int nod,vector<vector<int>>&graph,vector<int>&ans){
         ans.pb(nod);
+        
         if(nod == n-1){
-          
             res.pb(ans);
             return;
         }
