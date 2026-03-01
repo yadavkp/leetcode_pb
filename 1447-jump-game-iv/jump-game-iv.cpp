@@ -1,22 +1,21 @@
 class Solution {
     int n;
     vector<int> vis;
-    bool ok = false;
-    
-    unordered_map<int,vector<int>> mp;
+    map<int,vector<int>> mp;
         
         void store_similar_nod(int idx,vector<int>&a,queue<int>&q){
         
             for(auto j : mp[a[idx]]){
                    
-                        if(!vis[j]){
-                            if(j == n-1)ok = true;
-                            q.push(j);
-                            vis[j] =1;
-                        }
+                if(!vis[j]){
+                    
+                    q.push(j);
+                    vis[j] =1;
+                }
                     
             }
-            mp[a[idx]].clear();
+
+           mp[a[idx]].clear(); // this avoid revising again the mp
              
         }
 
