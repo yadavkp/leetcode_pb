@@ -1,0 +1,18 @@
+# Write your MySQL query statement below
+
+-- select a.firstName,
+--        a.lastName,
+--        b.city ,
+--         b.state
+-- from Person as a
+-- left join Address as b
+-- on a.personId = b.personId;
+
+select a.firstName,
+       a.lastName,
+       b.city ,
+        b.state
+from Person as a
+natural left  join Address as b;
+
+
