@@ -8,9 +8,9 @@ public:
         dp[nod][0] = par;
         for(int i = 1;i<=19;i++){
 
-           if(dp[nod][i-1] >0){
+           //if(dp[nod][i-1] != 0){
                 dp[nod][i] = dp[dp[nod][i-1]][i-1];
-            }
+            //}
 
         }
 
