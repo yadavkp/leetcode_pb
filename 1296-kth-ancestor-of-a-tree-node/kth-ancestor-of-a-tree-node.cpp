@@ -1,14 +1,11 @@
 class TreeAncestor {
-    
+ 
 
-    
-   
 public:
     const static int N = 2e5;
     int dp[N][20];
      void dfs(int nod,int par,vector<vector<int>>&adj){
         dp[nod][0] = par;
-
         for(int i = 1;i<=19;i++){
 
            if(dp[nod][i-1] >0){
