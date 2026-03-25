@@ -7,7 +7,9 @@ left join Employee as b
 on a.employee_id = b.employee_id
 group by project_id;
 
+
 -- select a.project_id,a.employee_id,b.name,b.experience_years
 --     from Project as a
--- left join Employee as b
--- on a.employee_id = b.employee_id;
+-- right join Employee as b
+-- on a.employee_id = b.employee_id
+-- group by project_id;
