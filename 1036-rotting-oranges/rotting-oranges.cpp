@@ -2,6 +2,8 @@ class Solution {
     int dx[4] = {0,0,-1,1};
     int dy[4] = {-1,1,0,0};
 
+
+
     bool valid(int r,int c,int n,int m,vector<vector<int>>&grid){
         if(r < 0 || r >= n || c < 0 || c >= m || grid[r][c] == 2||
         grid[r][c] == 0 )return false;
@@ -11,6 +13,7 @@ class Solution {
 
 public:
     int orangesRotting(vector<vector<int>>& grid) {
+
         int n = grid.size();
         int m = grid[0].size();
         int one = 0;
@@ -23,10 +26,13 @@ public:
                 if(grid[i][j] == 1)one++;
             }
         }
-        int cnt =0;
-        if(q.empty() && one > 0) return -1;
-        if(q.empty()) return 0;
 
+        int cnt =0;
+
+        if(q.empty() && one > 0) return -1; // no 2, but one present
+
+        if(q.empty()) return 0;  // neither one and neither 2
+ 
         while(!q.empty()){
 
             int sz = q.size();
@@ -34,11 +40,9 @@ public:
             while(sz--){
 
                 auto [r,c] = q.front();q.pop();
-
                 for(int i = 0;i<4;i++){
                     int n_r = r + dx[i];
                     int n_c = c + dy[i];
-
                     if(valid(n_r,n_c,n,m,grid)){
                         q.push({n_r,n_c});
                         grid[n_r][n_c] = 2;
