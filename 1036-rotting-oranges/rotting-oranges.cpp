@@ -28,10 +28,11 @@ public:
         }
 
         int cnt =0;
+        if(one == 0) return 0;
+        
+        if(q.empty()) return -1; // no 2, but one present
 
-        if(q.empty() && one > 0) return -1; // no 2, but one present
-
-        if(q.empty()) return 0;  // neither one and neither 2
+       
  
         while(!q.empty()){
 
