@@ -12,7 +12,7 @@ public:
                 stk.pop();
             }
 
-            stk.push(i%n);
+           if(i < n) stk.push(i%n);
 
           
 
