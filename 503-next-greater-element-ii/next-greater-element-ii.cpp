@@ -12,12 +12,9 @@ public:
                 stk.pop();
             }
 
-            // if(!stk.empty() && i < n){
-            //     ans[i%n] = stk.top();
-            // }
-            // if(i < n){
-                stk.push(i%n);
-            // }
+            stk.push(i%n);
+
+          
 
         }
 
