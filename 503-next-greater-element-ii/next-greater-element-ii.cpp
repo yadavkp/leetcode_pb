@@ -15,9 +15,9 @@ public:
             // if(!stk.empty() && i < n){
             //     ans[i%n] = stk.top();
             // }
-            if(i < n){
+            // if(i < n){
                 stk.push(i%n);
-            }
+            // }
 
         }
 
