@@ -1,15 +1,15 @@
 class Solution {
 
     vector<vector<int>> dp;
-    bool findsum(int idx,int n,vector<int>&a,int sum,int curr){
+    bool findsum(int idx,int n,vector<int>&a,int curr,int sum){
    
    
-        if(curr == sum)return 1;
-        if(curr > sum || idx >= n)return 0;
+        if(curr == 0)return true;
+        if(curr  < 0 || idx >= n)return false;
         
         if(dp[idx][curr]  != -1)return dp[idx][curr];
         
-     return dp[idx][curr] =  findsum(idx+1,n,a,sum,curr + a[idx]) || findsum(idx+1,n,a,sum,curr);;
+     return dp[idx][curr] =  findsum(idx+1,n,a,curr - a[idx],sum) || findsum(idx+1,n,a,curr,sum);;
         
      
         
