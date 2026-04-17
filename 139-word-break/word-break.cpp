@@ -5,7 +5,6 @@ class Solution {
 
         if(i >= n)return true;
 
-        //if(dict.count(s)) return true;
         if(memo[i] != -1) return memo[i];
         bool ans = false;
         for(int j=i+1;j<=s.size();j++){
@@ -18,10 +17,10 @@ class Solution {
     }
 public:
     bool wordBreak(string s, vector<string>& wordDict) {
-            n = s.size();
-            unordered_set<string> seen ;
-            memset(memo,-1,sizeof(memo));
-            seen.insert(wordDict.begin(),wordDict.end());
+        n = s.size();
+        unordered_set<string> seen ;
+        memset(memo,-1,sizeof(memo));
+        seen.insert(wordDict.begin(),wordDict.end());
 
         return solve(0,s,seen);
     }
