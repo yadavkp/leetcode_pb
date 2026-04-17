@@ -1,104 +1,30 @@
-
-// #define ll long long 
-// class Solution {
-//     int n;
-//     int solve(int i,int amount,vector<int>&coins, int cnt){
-
-//         if(amount == 0){
-//             return 0;
-//         }
-//         if(i >= n) return 1e7;
-//        if(amount < 0) return 1e7;
-
-//         int take = 1e7;
-//         if(amount - coins[i] >= 0){
-//              take = 1 + solve(i,amount - coins[i],coins, cnt+1);
-//         }
-
-//         cout << "i=" << i << " amount=" << amount << " cnt=" << cnt << "\n";
-
-//         int not_take = solve(i+1,amount,coins, cnt);
-
-//         return min(take , not_take);
-//     }
-// public:
-//     int coinChange(vector<int>& coins, int amount) {
-//        n = coins.size();
-//        if(amount == 0)return 0;
-       
-//        //if(sum < amount)return -1;
-//        int ans = solve(0,amount,coins, 0);
-//       return (ans == 1e7 ? -1 : ans);
-//     }
-// };
-
-
-
-///->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-// memoisation 
-// #define ll long long 
-// class Solution {
-//     int n;
-//     vector<vector<int>> dp;
-//     int solve(int i,int amount,vector<int>&coins){
-
-//         if(amount == 0){
-//             return 0;
-//         }
-        
-//        if(amount < 0 || i >= n) return 1e7;
-
-//         if(dp[i][amount] != -1)return dp[i][amount];
-        
-//         int take = 1e7; // suppose this u have taken start coin
-//         if(amount - coins[i] >= 0){
-//              take = 1 + solve(i,amount - coins[i],coins);
-//         }
-//         int not_take = solve(i+1,amount,coins);
-        
-//         return dp[i][amount] = min(take , not_take);
-//     }
-// public:
-//     int coinChange(vector<int>& coins, int amount) {
-//        n = coins.size();
-//        if(amount == 0)return 0;
-//        dp.assign(n,vector<int>(amount+1,-1));
-//        int ans = solve(0,amount,coins);
-//       return (ans == 1e7 ? -1 : ans);
-//     }
-// };
-
-
-// tabulation  -> 
-
- 
-#define ll long long 
 class Solution {
-    
-public:
-    int coinChange(vector<int>& coins, int amount) {
-        int n;
-        vector<vector<int>> dp;
-       n = coins.size();
-         const int INF = 1e7;
-       dp.assign(n+1,vector<int>(amount+1,INF));
-    
-        // base case
-        for(int i = 0;i < n;i++){
-            dp[i][0] = 0;
-        }
+    int n;
+    int dp[13][10004];
+    int solve(int i,int amount,vector<int>& coins){
 
-        for(int i = n-1;i>=0;i--){
-            for(int sum = 1;sum <= amount;sum++){ // why 1, because we already mark edge case
-                int take = INF;
-                if(sum >= coins[i]){
-                    take = 1 + dp[i][sum - coins[i]];
-                }
-                int not_take = dp[i+1][sum];
-                dp[i][sum] = min(take,not_take);
+        if(amount == 0) return 0;
+        if(i >= n) return INT_MAX;
+
+        if(dp[i][amount] != -1) return dp[i][amount];
+        int not_take = solve(i+1,amount,coins);
+
+        int take = INT_MAX;
+        if(amount >= coins[i]){
+            int res = solve(i,amount-coins[i],coins);
+            if(res != INT_MAX){
+                take = min(take,1 + res);
             }
         }
-      return (dp[0][amount] == INF ? -1 : dp[0][amount]);
+
+        return dp[i][amount] =  min(take,not_take);
+
+    }
+public:
+    int coinChange(vector<int>& coins, int amount) {
+        n = coins.size();
+        memset(dp,-1,sizeof(dp));
+        int res =  solve(0,amount,coins);
+        return (res == INT_MAX) ? -1 : res;
     }
 };
-
