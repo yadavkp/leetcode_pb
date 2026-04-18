@@ -21,9 +21,8 @@ public:
                 
             }else{
                 
-                bool ans = (helper(i+1,j,s));
-                ans |= helper(i,j-1,s);
-                return ans;
+               
+                return helper(i,j-1,s) | helper(i+1,j,s);
             }
         }
         return true;
