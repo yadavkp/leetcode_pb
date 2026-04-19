@@ -23,7 +23,7 @@ public:
 
             if(cnt ==0){
               
-                while(cnt == 0 && i <= j && j < s.size()){
+                while(cnt == 0 && i <= j){
 
                     if(mx_len > j - i + 1){
                         s_idx = i,mx_len = min(mx_len,j - i + 1);
