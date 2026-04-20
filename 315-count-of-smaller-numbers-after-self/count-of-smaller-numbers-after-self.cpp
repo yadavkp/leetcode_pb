@@ -45,9 +45,8 @@ public:
 
         for(int i=0;i<n;i++){
 
-            auto idx = upper_bound(temp.begin(),temp.end(),nums[i]) - temp.begin()-1;
-           // cout<<idx<<" ";
-
+            auto idx = lower_bound(temp.begin(),temp.end(),nums[i]) - temp.begin();
+           
             int cnt = find_query(0,0,idx-1,0,temp.size()-1);
             ans[i] = cnt;
             update(0,idx,0,temp.size()-1);
