@@ -1,6 +1,6 @@
 class Solution {
-    vector<vector<vector<int>>> dp;
-
+   // vector<vector<vector<int>>> dp;
+    int dp[1002][2][101];
     int solve(int i,int flag,int limit,vector<int>&price){
 
         if(i >= price.size() || limit==0) return 0;
@@ -24,8 +24,8 @@ class Solution {
 public:
     int maxProfit(int k, vector<int>& prices) {
         int n = prices.size();
-        dp.assign(n+1,vector<vector<int>>(2,vector<int>(k+1,-1)));
-
+        //dp.assign(n+1,vector<vector<int>>(2,vector<int>(k+1,-1)));
+        memset(dp,-1,sizeof(dp));
         return solve(0,0,k,prices);
     }
 };
