@@ -4,6 +4,7 @@ class Solution {
     int solve(int i,int amount,vector<int>& coins){
 
         if(amount == 0) return 1;
+
         if(i >= n) return 0;
 
         if(dp[i][amount] != -1) return dp[i][amount];
