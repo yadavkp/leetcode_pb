@@ -15,9 +15,10 @@ class Solution {
                 if(n_r>=0 && n_r<n && n_c>=0 && n_c<m  && grid[i][j] == grid[n_r][n_c]){
 
                    if(make_pair(n_r,n_c) != prev){
-                    if(vis[n_r][n_c]) return true;
-            pair<int,int> cur = {i,j};
-                    if( found(n_r,n_c,cur,grid,vis))return true;
+                     if(vis[n_r][n_c]) return true;
+
+                        pair<int,int> cur = {i,j};
+                       if( found(n_r,n_c,cur,grid,vis))return true;
                    }
                 }
            
