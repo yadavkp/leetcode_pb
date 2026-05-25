@@ -20,14 +20,15 @@ public:
                 if(lb == seen.end()) continue;
                 
                 while(!seen.empty() && lb != up ){
-                    auto next = std ::next(lb);
+                    
+                    auto nex= next(lb);
                     reach[*lb] = 1;
 
                     seen.erase(lb);
-                    lb = next;
+                    lb = nex;
                 }
             }
-            cout<<reach[i]<<" ";
+           
         }
 
         return reach[n-1]==1;
