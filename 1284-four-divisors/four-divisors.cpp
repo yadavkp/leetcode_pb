@@ -1,13 +1,12 @@
 class Solution {
 
-    int extract(int nn){
-        int n = nn;
+    int extract(int n){
+       // int n = nn;
         set<int> ans;
         int sum = 0;
         ans.insert(1);ans.insert(n);
 
         for(int i=2; i*i <= n;i++ ){
-
             if(n % i == 0){
                 while( n%i==0){
                     ans.insert(n/i);
@@ -16,9 +15,7 @@ class Solution {
                ans.insert(i);
             }
         }
-
         if(n > 1) ans.insert(n);
-
         if(ans.size() == 4){
             for(auto t : ans){
                sum += t;
