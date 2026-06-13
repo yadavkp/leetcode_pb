@@ -8,9 +8,10 @@ public:
             for(auto ch : words[i]){
 
                 sum += weights[ch-'a'];
+                
             }
             sum %= 26;
-            ans += ((26 - sum-1 )+ 'a');
+            ans += ((26 - sum-1)+ 'a');
         }
         return ans;
     }
