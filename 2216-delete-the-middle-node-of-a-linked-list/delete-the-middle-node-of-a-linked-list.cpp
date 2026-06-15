@@ -31,7 +31,7 @@ public:
 
         ListNode* temp1 = temp->next;
 
-        temp->next = temp1->next;
+        temp->next = temp->next->next;
 
         delete temp1;
 
