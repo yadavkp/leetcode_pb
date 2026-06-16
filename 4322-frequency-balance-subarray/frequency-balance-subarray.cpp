@@ -1,26 +1,18 @@
 class Solution {
 
-    bool check(unordered_map<int,int>&frq,int len){
-
-        int mx_frq = 1, cnt = 0;
-        for(auto [v,f] : frq){
-            mx_frq = max(mx_frq,f);
-        }
-
-        if(frq.size() == len) return false;
+    bool check(unordered_map<int,int>&frq,int mx_frq){
+        int half = mx_frq/2;
+        int ok1 = 0,ok2 = 0; // for half, and mx_frq;
        
-         for(auto [v,f] : frq){
-            if(mx_frq != f)cnt++;
-        }
-
-        if(cnt < 1 && frq.size()>1)return false;
-        // this for checking atleast having two num with different frequecny
        
         for(auto [v,f] : frq){
             if(mx_frq != f){
                 if(mx_frq != 2* f) return false;
             }
+            if(f == half)ok1 = 1;
+            if(mx_frq == f)ok2=1;
         }
+        if(ok1==0 || ok2==0) return false; // if anyone not present 
 
         return true;
 
@@ -39,7 +31,7 @@ public:
                     mx = max(mx, j-i+1);
                     continue;
                 }
-                if(mx_frq%2 == 0 && check(frq,j-i+1)){
+                if(mx_frq%2 == 0 && check(frq,mx_frq)){
                     mx = max(mx, j - i +1);
                 }
             }
