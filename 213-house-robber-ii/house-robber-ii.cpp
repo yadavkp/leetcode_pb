@@ -1,12 +1,12 @@
 class Solution {
      int dp[101];
-    int solve(int i,int j,vector<int>&a){
+    int solve(int i,int n,vector<int>&a){
 
 
-        if(i > j) return 0;
+        if(i > n) return 0;
         if(dp[i] != -1) return dp[i];
-        int take = a[i] + solve(i+2,j,a);
-        int not_take = solve(i+1,j,a);
+        int take = a[i] + solve(i+2,n,a);
+        int not_take = solve(i+1,n,a);
 
         return dp[i] =  max(not_take,take);
     }
