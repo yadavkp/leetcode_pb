@@ -2,19 +2,24 @@ class Solution {
 public:
     double angleClock(int hour, int minutes) {
         
-        double angle_made_y_min_hand  = minutes*6.0;
+           
+        if(hour == 12)hour = 0;
 
-        double angle_made_y_hr_hand = (hour==12) ? 0 : hour * 30.0;
+           // Minute hand: moves 6 degrees per minute (360 / 60)
 
-        double now_angle_made_y_hr_hand_min = (minutes * 1.0 )/ 2.0;
+        double min_angle = minutes * 6.0;
+           
+         // Hour hand:
+        // 30 degrees per hour (360 / 12)
+        // plus 0.5 degrees per minute (30 / 60
 
-        double x = angle_made_y_min_hand ;
-        double y = angle_made_y_hr_hand;
-        double z = now_angle_made_y_hr_hand_min;
+        double hr_angle =  hour * 30.0 + (minutes * 0.5);
 
-            double pos_x = abs( x - (y + z));
-            double pos_y = abs(360 - pos_x);
-    return  (min ( pos_x, pos_y));
+        double angle_diff = abs(min_angle - hr_angle);
+
+        // Return the smaller angle between the two possibilities
+
+        return min ( angle_diff, 360 - angle_diff);
 
     }
 };
