@@ -1,3 +1,7 @@
+//  think about , if u generate substring , from i and  expand j,
+//  then think, if u stood on i, how many substring can make from 0 to i
+// its very easy to track, last index of a,b,c all then take min +1
+
 class Solution {
 public:
     int numberOfSubstrings(string s) {
