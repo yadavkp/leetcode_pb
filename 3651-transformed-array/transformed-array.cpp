@@ -4,16 +4,16 @@ public:
         int n = nums.size();
         vector<int> result(n);
 
-        for (int i = 0; i < n; i++) {
-            if (nums[i] == 0) {
-                result[i] = 0;
-            } else {
-                int steps = nums[i];
-                int newIndex = (i + steps) % n;
-                if (newIndex < 0) newIndex += n;
-                result[i] = nums[newIndex];
-            }
+        for(int i=0;i<n;i++){
+           
+           int shift = nums[i];
+
+           result[i] = nums[(( i + shift ) % n + n ) % n]; // this handle all +ve,-ve
+
+
+ 
         }
+
         return result;
     }
 };
