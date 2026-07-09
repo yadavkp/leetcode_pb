@@ -39,11 +39,12 @@ public:
                 ll sum = dig_sum[r] - ( (l==0) ? 0 : dig_sum[l-1]);
                 int k = dig_count[r] - ( (l==0) ? 0 : dig_count[l-1]);
 
-                ll left_num = 0;
+                  ll left_num = 0;
                 if(l){
                   left_num =  ( build_num[l-1] * pow10[k] ) % mod;
                 }
-                ll num =( build_num[r] - left_num + mod ) % mod;
+                ll num =  ( build_num[r] - left_num + mod ) % mod;
+                
 
                 ans[i] = (sum * num ) % mod;
             }
