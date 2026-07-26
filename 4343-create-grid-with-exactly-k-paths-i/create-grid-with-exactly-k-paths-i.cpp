@@ -1,6 +1,6 @@
-class Solution {
-    const int static N = 12;
- 
+//  for this pb, simple build the manually think grid  , that have exact k path // rather than building the backtracking o(r dp to count the path it lead to exponentially time complexity) 
+
+class Solution{
     vector<vector<char>> grid;
     vector<string> ans;
     int m,n,k;
@@ -12,50 +12,21 @@ class Solution {
 
         if(k == 1){
             found = 1;
-            for(int i=0; i < m; i++){
-                for(int j = 0; j < n; j++){
-                    if(i == 0 || j== n-1)continue;
-                    grid[i][j] = '#';
-                }
-            }
+            r = 0,c = 0;
         }else if(k == 2){
-
             if(m >=2 && n >= 2){
                 found = 1;
-                
                 r = 1,c = 1;
-            }
-            if(found){
-                for(int i=0; i < m; i++){
-                     for(int j = 0; j < n; j++){
-                        if(i <=r && j <= c)continue;
-                        grid[i][j] = '#';
-                    }
-
-                }
             }
 
         }else if(k == 3){
-
             if( m >= 2  && n >= 3){
                 found =1;
                 r = 1,c = 2;
-
             }else if(m >= 3 && n>=2){
                 found = 1;
                 r = 2,c = 1;
             }
-
-            if(found){
-                    for(int i=0; i < m; i++){
-                     for(int j = 0; j < n; j++){
-                        if(i <= r && j <=  c)continue;
-                        grid[i][j] = '#';
-                    }
-
-                }
-            }
-
 
         }else if(k == 4){
             if(m >= 2 && n >= 4){
@@ -68,16 +39,16 @@ class Solution {
                 found = 2;
                 r = 2,c = 2;
             }
+        }
 
-            if(found){
-                    for(int i=0; i < m; i++){
-                        for(int j = 0; j < n; j++){
-                            if(i <= r && j <=  c)continue;
-                            grid[i][j] = '#';
-                        }
-
+        if(found){
+                for(int i=0; i < m; i++){
+                    for(int j = 0; j < n; j++){
+                        if(i <=r && j <= c)continue;
+                        grid[i][j] = '#';
                     }
-            }
+
+                }
         }
     }
 
@@ -92,11 +63,13 @@ public:
         found = 0;
         solve();
 
-        if(found && k>=2){
-            // first mark  3 y 3 , bc
-            if(m >=3 && n >= 3 && r == 2 && c == 2){
+        if(m >=3 && n >= 3 && r == 2 && c == 2){
                 grid[0][2] = '#',grid[2][0] = '#';
-            }
+        }
+
+        if(found){
+            // first mark  3 y 3 , bc
+            
 
             if(r+1 < m ){  // it means first go bottom, then right
                 for(int i = r;i < m; i++){
@@ -118,7 +91,6 @@ public:
         }
 
         if(found){
-            cout<<r<<" "<<c;
                  for(int i=0; i < m; i++){
                     string s = "";
                         for(int j = 0; j < n; j++){
