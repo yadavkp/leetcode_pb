@@ -107,65 +107,102 @@
 
 
 class Solution {
-public:
-    vector<vector<int>> paths(int m, int n, vector<string>& grid) {
-        vector<vector<int>> dp(m, vector<int>(n, 0));
-        dp[0][0] = 1;
 
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (grid[i][j] != '#') {
-                    if (i != 0 && j != 0)
-                        dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
-                    else {
-                        if (i == 0 && j != 0)
-                            dp[i][j] = dp[i][j - 1];
-                        if (i != 0 && j == 0)
-                            dp[i][j] = dp[i - 1][j];
+    const int static N = 12;
+    int dp[N][N];
+    vector<vector<char>> grid;
+    vector<string> ans;
+    int m,n,k;
+    int found = 0;
+
+    int check(){
+
+    //     if(i >= m || j >= n) return 0;
+
+    //     if(grid[i][j]  == '#') return 0;
+
+    //     if(i == m-1 && j == n-1){
+    //         return 1;
+    //     }
+
+    //     if(dp[i][j] != -1) return dp[i][j];
+
+    //     //int right = 0,down = 0;
+
+    //     int right = check(i,j+1);
+    //     int down = check(i+1,j);
+
+    //    return  dp[i][j] = right + down;
+
+       memset(dp,0,sizeof(dp));
+
+        dp[m-1][n-1] = 1;
+       for(int i = m-1;i >=0 ;i--){
+            for(int j = n-1; j >= 0; j--){
+
+               if(grid[i][j] != '#'){
+
+                    if(i != m-1 && j != n-1){
+                        dp[i][j] = dp[i+1][j] + dp[i][j+1];
                     }
-                }
+                   if(i == m-1 && j != n-1){
+                     dp[i][j] = dp[i][j+1];
+                   }else if(i != m-1 && j == n-1)dp[i][j] = dp[i+1][j];
+                
+               }else{
+
+               }
             }
-        }
-        return dp;
+       }
+
+       return dp[0][0];
+
     }
 
-    bool backtrack(vector<string>& grid, int m, int n, int idx, int k) {
-        auto dp = paths(m, n, grid);
-        int total = dp[m - 1][n - 1];
+    bool  backtrack(int pos){
 
-        if (total == k)
+        if(check() == k){
             return true;
+        }
 
-        if (total < k)
-            return false;
+        if(check() < k) return false;
 
-        if (idx == m * n)
-            return false;
 
-        int row = idx / n, col = idx % n;
+        if(pos == n*m){
+            return false ;
+        }
 
-        if ((row == 0 && col == 0) || (row == m - 1 && col == n - 1))
-            return backtrack(grid, m, n, idx + 1, k);
+        int r = pos / n, c = pos % n;
 
-        // place
-        grid[row][col] = '#';
-        if (backtrack(grid, m, n, idx + 1, k))
-            return true;
-        // backtrack
-        grid[row][col] = '.';
+        grid[r][c] = '#';
+        if( backtrack(pos+1)) return true;
 
-        // do not place
-        if (backtrack(grid, m, n, idx + 1, k))
-            return true;
+        grid[r][c] = '.';
+        if( backtrack(pos+1)) return true;
 
         return false;
-    }
 
-    vector<string> createGrid(int m, int n, int k) {
-        vector<string> grid(m, string(n, '.'));
-        if (backtrack(grid, m, n, 0, k))
-            return grid;
-        return {};
+    }
+public:
+    vector<string> createGrid(int mm, int nn, int kk) {
+        m = mm,n = nn,k=kk;
+        
+        ans.clear();
+        grid.assign(m,vector<char>(n,'.'));
+        
+        
+        if(backtrack(0)){
+            for(int i=0;i<m; i++){
+                string s  ="";
+                for(int j = 0; j < n; j++){
+                    s += grid[i][j];
+                }
+                ans.push_back(s);
+            }
+        }
+
+        return ans;
+
     }
 };
-    
+
