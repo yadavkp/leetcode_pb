@@ -1,25 +1,27 @@
+
+int cnt;
+int n;
 class Solution {
 
-    bool valid(int i,int j, string&s){
+    void helper(int i,int j, string&s){
 
-        while(i <= j){
-
-            if(s[i] != s[j]) return false;
-            i++,j--;
+        while( i >= 0 && j < n && s[i] == s[j]){
+            cnt++;
+           
+            i--,j++;
+            
         }
-
-        return true;
     }
+
 public:
     int countSubstrings(string s) {
-        int n = s.size();
+         n = s.size();
 
-
-        int cnt = 0;
+        cnt = 0;
         for(int i = 0; i < n; i++){
-            for(int j = i;j < n; j++){
-                if(valid(i,j,s))cnt++;
-            }
+            
+            helper(i,i,s);
+            helper(i,i+1,s);
         }
         return cnt;
     }
