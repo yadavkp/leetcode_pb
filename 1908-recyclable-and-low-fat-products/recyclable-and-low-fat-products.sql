@@ -26,10 +26,18 @@
 
 -- 4th way to write by the Intersect way of two lists
 
-select product_id 
-from Products
- where low_fats = 'Y'
-intersect
-select product_id 
-from Products
- where recyclable = 'Y';
+
+-- select product_id 
+-- from Products
+-- where low_fats = 'Y'
+-- intersect
+-- select product_id 
+-- from Products
+-- where recyclable = 'Y';
+
+select product_id
+from Products 
+where
+ low_fats = 'Y'
+and 
+ recyclable = 'Y';
