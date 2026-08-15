@@ -8,6 +8,9 @@
 -- from Customer 
 -- where ifnull(referee_id,0) != 2;
 
-select name 
-from Customer 
-where coalesce(referee_id,0) != 2;
+-- select name 
+-- from Customer 
+-- where coalesce(referee_id,0) != 2;
+select a.name as name 
+from Customer as a 
+where a.referee_id is null or a.referee_id != 2;
