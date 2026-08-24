@@ -2,8 +2,6 @@ class Solution {
 
     void factor(map<int,int>&mp,int num,int flag){
 
-        
-
         for(int i = 2;i *i <= num;i++){
 
             if( num %i ==0){
