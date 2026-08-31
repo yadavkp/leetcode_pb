@@ -23,7 +23,7 @@ public:
 
         head = head->next;
         cnt = 0;
-        int idx = 2;
+        int idx = 2;  // make sure , 1 based indexing
         int mid_idx = idx;
         while(head->next != nullptr){
           
@@ -52,7 +52,7 @@ public:
             head = head->next;
         }
 
-        if(mn_ans == 1e7) return {-1,-1};
+        if(mn_ans == 1e7) return {-1,-1}; // not got anyone of them critical point
 
         return {mn_ans, mx_ans};
         
