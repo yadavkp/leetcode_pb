@@ -10,7 +10,7 @@
  * };
  */
 class Solution {
-    //vector<int> depth;
+   
     int cnt = 0;
     pair<int,int>  solve(TreeNode* root){
 
@@ -21,24 +21,23 @@ class Solution {
 
         int sum = 0;
         sum += root->val;
-        int tot = 0;
+        int nod_cnt = 0;
         if(root->left != nullptr){
             auto [v,depth]= solve(root->left);
-            tot += depth;
+            nod_cnt += depth;
             sum += v;
         }
         if(root->right != nullptr){
             auto [v,depth]= solve(root->right);
-            tot += depth;
+            nod_cnt += depth;
             sum += v;
         }
-        tot += 1;
 
-        if(tot > 0  && ((root->val) == (sum / tot))) cnt += 1;
+        nod_cnt += 1; // + 1 for current nod
 
-       // cout<< sum <<" "<< tot<<" \n";
+        if( ((root->val) == (sum / nod_cnt))) cnt += 1;
 
-        return {sum, tot};
+        return {sum, nod_cnt};
     }
 public:
     int averageOfSubtree(TreeNode* root) {
