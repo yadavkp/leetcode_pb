@@ -16,7 +16,6 @@ public:
                         }
                 }
             }
-
             if(idx.size() == 3){
                 if(idx[1] - idx[0] == idx[2] - idx[1])cnt++;
             }
