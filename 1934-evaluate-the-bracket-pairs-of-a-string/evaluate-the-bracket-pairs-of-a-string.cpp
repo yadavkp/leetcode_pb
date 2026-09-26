@@ -4,10 +4,8 @@ public:
         
         map<string,string> mp;
 
-         for(int i=0;i < knowledge.size();i++){
-
-            auto v = knowledge[i];
-            mp[v[0]] = v[1];
+         for(auto v1 : knowledge){
+            mp[v1[0]] = v1[1];
          }
         int n = s.size();
 
