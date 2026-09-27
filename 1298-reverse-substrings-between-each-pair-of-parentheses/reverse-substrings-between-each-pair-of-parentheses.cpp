@@ -4,7 +4,7 @@ public:
         
         stack<char> st;
         int n = s.size();
-
+         string ans;
         for(char ch : s){
             
             if(ch == ')'){
@@ -17,11 +17,13 @@ public:
                 for(int i = 0;i < ss.size();i++){
                     st.push(ss[i]);
                 }
+                
+
             }else{
                 st.push(ch);
             }
         }
-        string ans;
+       
         while(!st.empty()){
             ans += (st.top());
             st.pop();
