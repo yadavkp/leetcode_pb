@@ -5,21 +5,20 @@ public:
         int cost = 0,op=0,cl=0;
         int n = s.size();
         for(int i = 0;i < n;i++){
-
             if(s[i] == '('){
                 op++;
-                if(cl>0){
-                    cost += cl;cl=0;
-                }
+                // if(cl>0){
+                //     cost += cl;cl=0;
+                // }
             }else{
                 if(op>0){
                     op--;
                 }else{
-                    cl++;
+                    cost += 1;
                 }
             }
         }
-        cost += op;cost +=cl;
+        cost += op;
         return cost;
     }
 };
