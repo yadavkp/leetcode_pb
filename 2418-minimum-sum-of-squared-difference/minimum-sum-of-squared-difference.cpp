@@ -30,7 +30,7 @@ public:
         ll sum = accumulate(arr.begin(),arr.end(),0LL);
         if(sum <= k) return 0;
 
-        ll l = 0,r = 1e18;
+        ll l = 0,r = 1e5;
         ll ans = 1e18;
         while(l <= r){
             ll mid = (l + (r - l )/2);
