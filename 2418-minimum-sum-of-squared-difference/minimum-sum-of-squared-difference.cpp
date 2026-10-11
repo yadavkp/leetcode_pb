@@ -34,10 +34,17 @@ public:
         cout<< avg_val;
 
         for(int i=0;(i <n  && k>0);i++){
-            if(arr[i]>avg_val){
+            
+            if(arr[i]>avg_val && arr[i]>0){
                 ll spend = (arr[i] - avg_val);
-                k -= spend;
-                arr[i] -= spend;
+                
+                if(k >= spend){
+                    k -= spend;
+                     arr[i] -= spend;
+                }else{
+                    arr[i] -= k;
+                    k=0;
+                }
             }
             
         }
