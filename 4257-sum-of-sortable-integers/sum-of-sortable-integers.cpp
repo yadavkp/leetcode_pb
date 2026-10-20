@@ -14,25 +14,26 @@ class Solution {
 
     bool valid(int k,vector<int>&nums){
         
-        int mx = 0;
+        int left_mx = 0;
         for(int i=0;i < n;i+=k){
-            int cur = nums[i];
-            int cur_mx = nums[i];
+            int right_mn = nums[i];
+            int right_mx = nums[i];
             int cnt = 0;
 
             for(int j = i;j < i+ k-1;j++){
                 if(nums[j] > nums[(j+1)])cnt++;
-                cur = min(cur,nums[j]);
-                cur_mx = max(cur_mx,nums[j]);
+                right_mn = min(right_mn,nums[j]);
+                right_mx = max(right_mx,nums[j]);
             }
 
             if(nums[i + k -1] > nums[i])cnt++;
-            cur = min(cur, nums[i + k - 1]);
-            cur_mx = max(cur_mx, nums[i + k - 1]);
+            right_mn = min(right_mn, nums[i + k - 1]);
+            right_mx = max(right_mx, nums[i + k - 1]);
 
-             if(cnt >1 ) return false;
-             if(mx > cur )return false;
-            mx = max(mx,cur_mx);
+            if(cnt >1 ) return false; // got descending more than  1,
+            if(left_mx > right_mn )return false;
+
+            left_mx = max(left_mx,right_mx);
            
         }
 
