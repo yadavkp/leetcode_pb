@@ -16,6 +16,7 @@ class Solution {
         
         int left_mx = 0;
         for(int i=0;i < n;i+=k){
+            
             int right_mn = nums[i];
             int right_mx = nums[i];
             int cnt = 0;
